@@ -5,6 +5,22 @@
  */
 package uts;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author faizaaulia
@@ -12,10 +28,18 @@ package uts;
 public class Peminjaman extends javax.swing.JFrame {
 
     /**
-     * Creates new form Peminjaman
+     * Creates new form frmMain
      */
+    
+    String nol_jam = "";
+    String nol_menit = "";
+    String nol_detik = "";
+    
     public Peminjaman() {
         initComponents();
+        selectData();
+        setTanggal();
+        setJam();
     }
 
     /**
@@ -27,22 +51,432 @@ public class Peminjaman extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        labeljam = new javax.swing.JLabel();
+        labeltanggal = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbData = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        btnAdd1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        Reset1 = new javax.swing.JButton();
+        btnRefresh1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        no_anggota = new javax.swing.JTextField();
+        Status = new javax.swing.JLabel();
+        nama_peminjam = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        denda = new javax.swing.JTextField();
+        terlambat = new javax.swing.JRadioButton();
+        tepat = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        alamat_peminjam = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jenis_buku = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tanggal_pinjam = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        tanggal_kembali = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        judul_buku = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        judul_buku2 = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(255, 0, 0));
+        jPanel1.setLayout(null);
 
-        pack();
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("The Real Informatic School");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(10, 30, 360, 30);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Pengembalian Buku Perpustakaan SMK Telkom Malang");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(10, 0, 620, 30);
+
+        labeljam.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        labeljam.setForeground(new java.awt.Color(255, 255, 255));
+        labeljam.setText("Jam");
+        jPanel1.add(labeljam);
+        labeljam.setBounds(690, 40, 170, 30);
+
+        labeltanggal.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        labeltanggal.setForeground(new java.awt.Color(255, 255, 255));
+        labeltanggal.setText("Tanggal");
+        jPanel1.add(labeltanggal);
+        labeltanggal.setBounds(690, 0, 180, 30);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 910, 70);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(null);
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setLayout(null);
+
+        tbData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "No. Anggota", "Nama Peminjam", "Alamat Peminjam", "Jenis Buku", "Judul Buku", "Tanggl Pinjam", "Tanggal Kembali", "Denda", "Status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDataMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbData);
+
+        jPanel3.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 10, 660, 540);
+
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(230, 70, 680, 550);
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setLayout(null);
+
+        btnAdd1.setText("SAVE");
+        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnAdd1);
+        btnAdd1.setBounds(10, 10, 90, 30);
+
+        btnDelete.setText("DELETE");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnDelete);
+        btnDelete.setBounds(440, 10, 90, 30);
+
+        Reset1.setText("CLEAR");
+        Reset1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reset1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(Reset1);
+        Reset1.setBounds(120, 10, 90, 30);
+
+        btnRefresh1.setText("REFRESH");
+        btnRefresh1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefresh1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnRefresh1);
+        btnRefresh1.setBounds(260, 10, 130, 30);
+
+        jButton1.setText("PRINT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1);
+        jButton1.setBounds(560, 10, 90, 30);
+
+        jPanel2.add(jPanel4);
+        jPanel4.setBounds(230, 10, 680, 50);
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setLayout(null);
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel5.add(jSeparator1);
+        jSeparator1.setBounds(0, 30, 210, 10);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setText("Isian Data Peminjam");
+        jPanel5.add(jLabel3);
+        jLabel3.setBounds(10, 10, 120, 15);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("No. Anggota");
+        jPanel5.add(jLabel4);
+        jLabel4.setBounds(10, 40, 110, 15);
+        jPanel5.add(no_anggota);
+        no_anggota.setBounds(10, 60, 200, 30);
+
+        Status.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Status.setText("Status");
+        jPanel5.add(Status);
+        Status.setBounds(10, 550, 120, 15);
+        jPanel5.add(nama_peminjam);
+        nama_peminjam.setBounds(10, 120, 200, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Nama Peminjam");
+        jPanel5.add(jLabel6);
+        jLabel6.setBounds(10, 100, 120, 15);
+        jPanel5.add(denda);
+        denda.setBounds(10, 510, 200, 30);
+
+        buttonGroup1.add(terlambat);
+        terlambat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        terlambat.setText("Terlambat");
+        terlambat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                terlambatActionPerformed(evt);
+            }
+        });
+        jPanel5.add(terlambat);
+        terlambat.setBounds(117, 570, 100, 23);
+
+        buttonGroup1.add(tepat);
+        tepat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tepat.setText("Tepat Waktu");
+        jPanel5.add(tepat);
+        tepat.setBounds(10, 570, 99, 23);
+
+        alamat_peminjam.setColumns(20);
+        alamat_peminjam.setRows(5);
+        jScrollPane2.setViewportView(alamat_peminjam);
+
+        jPanel5.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 180, 200, 70);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setText("Tanggal Pinjam");
+        jPanel5.add(jLabel10);
+        jLabel10.setBounds(10, 370, 140, 15);
+
+        jenis_buku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pengetahuan", "Pelajaran", "Biografi" }));
+        jenis_buku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jenis_bukuActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jenis_buku);
+        jenis_buku.setBounds(10, 270, 200, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("Alamat Peminjam");
+        jPanel5.add(jLabel11);
+        jLabel11.setBounds(10, 160, 140, 15);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("Jenis Buku");
+        jPanel5.add(jLabel12);
+        jLabel12.setBounds(10, 250, 140, 15);
+        jPanel5.add(tanggal_pinjam);
+        tanggal_pinjam.setBounds(10, 390, 200, 30);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setText("Denda");
+        jPanel5.add(jLabel13);
+        jLabel13.setBounds(10, 490, 140, 15);
+        jPanel5.add(tanggal_kembali);
+        tanggal_kembali.setBounds(10, 450, 200, 30);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setText("Tanggal Kembali");
+        jPanel5.add(jLabel14);
+        jLabel14.setBounds(10, 430, 140, 15);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setText("Judul Buku");
+        jPanel5.add(jLabel15);
+        jLabel15.setBounds(10, 310, 140, 15);
+        jPanel5.add(judul_buku);
+        judul_buku.setBounds(10, 330, 200, 30);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setText("Judul Buku");
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(10, 310, 140, 15);
+        jPanel5.add(judul_buku2);
+        judul_buku2.setBounds(10, 330, 200, 30);
+
+        jPanel2.add(jPanel5);
+        jPanel5.setBounds(0, 10, 220, 610);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 70, 920, 630);
+
+        setSize(new java.awt.Dimension(913, 717));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int baris = tbData.getSelectedRow();
+        if(baris != -1) {
+            String NIS = tbData.getValueAt(baris,0).toString();
+            String SQL = "DELETE FROM peminjam WHERE no_anggota='"+no+"'";
+            int status = KoneksiDB.execute(SQL);
+            if(status==1) {
+                JOptionPane.showMessageDialog(this, "Data berhasil dihapus", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Data gagal dihapus", "Gagal", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Pilih Baris Data Terlebih Dahulu!", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void Reset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reset1ActionPerformed
+        // TODO add your handling code here:
+        nama_peminjam.setText("");
+        no_anggota.setText("");
+        denda.setText("");
+        buttonGroup1.clearSelection();
+        alamat_peminjam.setText("");
+        denda.setText("");
+        judul_buku.setText("");
+        tanggal_pinjam.setDate(null);
+        tanggal_kembali.setDate(null);
+    }//GEN-LAST:event_Reset1ActionPerformed
+
+    private void btnRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh1ActionPerformed
+        // TODO add your handling code here:
+        selectData();
+    }//GEN-LAST:event_btnRefresh1ActionPerformed
+
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+        String tgl_pinjam = dateFormat.format(tanggal_pinjam.getDate());
+        String tgl_kembali = dateFormat.format(tanggal_kembali.getDate());
+        String Status = "";
+        
+        if(tepat.isSelected()) {
+            Status = "Tepat Waktu";
+        } else if (terlambat.isSelected()){
+            Status = "Terlambat";
+        }
+        
+        if(no_anggota.getText().equals("") || nama_peminjam.getText().equals("") 
+                || alamat_peminjam.getText().equals("") || jenis_buku.getSelectedItem().equals("")
+                || judul_buku.getText().equals("") || tgl_pinjam.equals(null) || tgl_kembali.equals(null)
+                || denda.getText().equals("") || Status.equals("")) {
+            JOptionPane.showMessageDialog(this, "Harap Lengkapi Data!", "Error", 
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            String SQL = "INSERT INTO peminjam VALUES ('"+no_anggota.getText()+"', "
+                    + "'"+nama_peminjam.getText()+"', '"+alamat_peminjam.getText()+"', "
+                    + "'"+jenis_buku.getSelectedItem()+"', '"+judul_buku.getText()+"','"+tgl_pinjam+"', '"+tgl_kembali+"', "
+                    + "'"+denda.getText()+"', '"+Status+"')";
+            int status = KoneksiDB.execute(SQL);
+            if(status == 1) {
+                JOptionPane.showMessageDialog(this, "Data Berhasil Ditambahkan", 
+                        "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Data Gagal Ditambahkan!", 
+                        "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnAdd1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        MessageFormat header = new MessageFormat("Biodata Siswa SMK Telkom Malang");
+        MessageFormat footer = new MessageFormat("Page {0,number,integer}");
+        try {
+            tbData.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, null, true, null);
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("Cannot print %s%n", e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jenis_bukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenis_bukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jenis_bukuActionPerformed
+
+    private void terlambatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_terlambatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_terlambatActionPerformed
+
+    private void tbDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDataMouseClicked
+        // TODO add your handling code here:
+        int baris = tbData.getSelectedRow();
+        if(baris != -1) {
+            no_anggota.setText(tbData.getValueAt(baris,0).toString());
+            nama_peminjam.setText(tbData.getValueAt(baris,1).toString());
+            txtTL.setText(tbData.getValueAt(baris,2).toString());
+            if("Laki-laki".equals(tbData.getValueAt(baris,3).toString())) {
+                rdLaki.setSelected(true);
+            } else {
+                rdPerempuan.setSelected(true);
+            }
+            txtKelas.setText(tbData.getValueAt(baris,4).toString());
+            txtEmail.setText(tbData.getValueAt(baris,5).toString());
+            txtAlamat.setText(tbData.getValueAt(baris,6).toString());
+        }
+    }//GEN-LAST:event_tbDataMouseClicked
+
+    private void setTanggal() {
+       java.util.Date skrg = new java.util.Date();
+       java.text.SimpleDateFormat kal = new
+       java.text.SimpleDateFormat("dd/MM/yyyy");
+       labeltanggal.setText("Tanggal "+kal.format(skrg));
+    }
+    
+    public void setJam() {
+        ActionListener taskPerformer = new ActionListener() {
+          public void actionPerformed(ActionEvent evt) {
+            Date dt = new Date();
+            int nilai_jam = dt.getHours();
+            int nilai_menit = dt.getMinutes();
+            int nilai_detik = dt.getSeconds();
+            if (nilai_jam <= 9) {
+                nol_jam = "0";
+            }
+            if (nilai_menit <= 9) {
+                nol_menit = "0";
+            }
+            if (nilai_detik <= 9) {
+                nol_detik  ="0";
+            } else {
+                nol_detik = "";
+            }
+            String jam = nol_jam+Integer.toString(nilai_jam);
+            String menit = nol_menit+Integer.toString(nilai_menit);
+            String detik = nol_detik+Integer.toString(nilai_detik);
+            labeljam.setText("Jam "+jam + ":" + menit + ":" +detik);
+          }  
+        };
+        new Timer(100, taskPerformer).start();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -69,6 +503,7 @@ public class Peminjaman extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Peminjaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -79,5 +514,77 @@ public class Peminjaman extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reset1;
+    private javax.swing.JLabel Status;
+    private javax.swing.JTextArea alamat_peminjam;
+    private javax.swing.JButton btnAdd1;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnRefresh1;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField denda;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox<String> jenis_buku;
+    private javax.swing.JTextField judul_buku;
+    private javax.swing.JTextField judul_buku2;
+    private javax.swing.JLabel labeljam;
+    private javax.swing.JLabel labeltanggal;
+    private javax.swing.JTextField nama_peminjam;
+    private javax.swing.JTextField no_anggota;
+    private com.toedter.calendar.JDateChooser tanggal_kembali;
+    private com.toedter.calendar.JDateChooser tanggal_pinjam;
+    private javax.swing.JTable tbData;
+    private javax.swing.JRadioButton tepat;
+    private javax.swing.JRadioButton terlambat;
     // End of variables declaration//GEN-END:variables
+
+    private void selectData() {
+        String kolom[] = {"No. Anggota","Nama Peminjam","Alamat Peminjam",
+            "Jenis Buku","Judul Buku","Tanggal Pinjam","Tanggal Kembali","Denda","Status"};
+        DefaultTableModel dtm = new DefaultTableModel(null, kolom);
+        String SQL = "SELECT * FROM peminjam";
+        ResultSet rs = KoneksiDB.executeQuery(SQL);
+        try {
+            while(rs.next()){
+                String no = rs.getString(1);
+                String nama = rs.getString(2);
+                String alamat = rs.getString(3);
+                String jenis = rs.getString(4);
+                String judul = rs.getString(5);
+                String pinjam = rs.getString(6);
+                String kembali = rs.getString(7);
+                String denda = rs.getString(8);
+                String status = "";
+                if("Tepat Waktu".equals(rs.getString(9))){
+                    status = "Tepat Waktu";
+                }else{
+                    status = "Terlambat";
+                }
+                String data[] = {no,nama,alamat,jenis,judul,pinjam,kembali,denda,status};
+                dtm.addRow(data);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger(Peminjaman.class.getName()).log(Level.SEVERE, null,ex);
+        }
+        tbData.setModel(dtm);
+    }
 }
