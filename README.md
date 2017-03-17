@@ -1,23 +1,18 @@
-UTS_PBO
-UTS Mapel PBO tentang Aplikasi Pengembalian Buku untuk Admin Perpustakaan.
-<ol>
+## UTS Mapel PBO tentang Aplikasi Pengembalian Buku untuk Admin Perpustakaan.
+#### Nama : Faiza Aulia Rahma Putra<br>Kelas : XI RPL 4<br>Absen : 14<br>NIS : 4709.1428/070<br>Nama Sekolah : SMK Telkom Malang
 
-<li> Judul Aplikasi </li>
-Admin Perpustakaan (Pengembalian Buku)
+## Screenshot
+Tampilan awal aplikasi dijalankan | Tampilan error saat button LOGIN diklik tetapi jika semua isian atau salah satu isian kosong
+------------ | -------------
+<img src="https://cloud.githubusercontent.com/assets/21327758/24032167/20195424-0b19-11e7-94d9-4f7007b56c99.PNG"/> | <img src="https://cloud.githubusercontent.com/assets/21327758/24032259/a18fa198-0b19-11e7-99ca-35a78a740e20.PNG"/>
 
-<li> Screenshot Aplikasi </li>
-##Tampilan awal aplikasi dijalankan:
-![1](https://cloud.githubusercontent.com/assets/21327758/24032167/20195424-0b19-11e7-94d9-4f7007b56c99.PNG)
-Tampilan error saat button LOGIN diklik tetapi jika semua isian atau salah satu isian kosong:
-![2](https://cloud.githubusercontent.com/assets/21327758/24032259/a18fa198-0b19-11e7-99ca-35a78a740e20.PNG)
-Tampilan error saat button LOGIN diklik tetapi jika semua isian atau salah satu isian tidak sama dengan database:
-![3](https://cloud.githubusercontent.com/assets/21327758/24032325/f7e1c184-0b19-11e7-8edd-1b4313addd6d.PNG)
-Tampilan error saat button SIGN UP diklik tetapi jika semua isian atau salah satu isian kosong:
-![4](https://cloud.githubusercontent.com/assets/21327758/24032335/0b579748-0b1a-11e7-8d13-41f196fbcfb5.PNG)
-Tampilan saat berhasil sign up:
-![5](https://cloud.githubusercontent.com/assets/21327758/24032349/1ea3b746-0b1a-11e7-834b-1e955c31b71b.PNG)
-Tampilan awal setelah berhasil login sesuai dengan database:
-![6](https://cloud.githubusercontent.com/assets/21327758/24032363/332eb576-0b1a-11e7-9b5b-eb6ea00c72ea.PNG)
+Tampilan error saat button LOGIN diklik tetapi jika semua isian atau salah satu isian tidak sama dengan database | Tampilan error saat button SIGN UP diklik tetapi jika semua isian atau salah satu isian kosong
+------------ | -------------
+<img src="https://cloud.githubusercontent.com/assets/21327758/24032325/f7e1c184-0b19-11e7-8edd-1b4313addd6d.PNG"/> | <img src="https://cloud.githubusercontent.com/assets/21327758/24032335/0b579748-0b1a-11e7-8d13-41f196fbcfb5.PNG"/>
+
+Tampilan saat berhasil sign up | Tampilan awal setelah berhasil login sesuai dengan database
+------------ | -------------
+<img src="https://cloud.githubusercontent.com/assets/21327758/24032349/1ea3b746-0b1a-11e7-834b-1e955c31b71b.PNG"/> | <img src="https://cloud.githubusercontent.com/assets/21327758/24032363/332eb576-0b1a-11e7-9b5b-eb6ea00c72ea.PNG"/>
 Tampilan error saat button SAVE diklik jika ada isian yang belum diisi, dalam gambar di bawah ini adalah isian denda:
 ![7](https://cloud.githubusercontent.com/assets/21327758/24032382/49fe7b10-0b1a-11e7-979b-242dc04b0ba1.PNG)
 Tampilan saat isian sudah terisi semua dan berhasil menambahkan data ke database:
