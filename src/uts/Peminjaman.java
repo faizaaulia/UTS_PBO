@@ -343,7 +343,6 @@ public class Peminjaman extends javax.swing.JFrame {
         if(baris != -1) {
             String no = tbData.getValueAt(baris,0).toString();
             String SQL = "DELETE FROM peminjam WHERE no_anggota='"+no+"'";
-            String SQL = "DELETE FROM peminjam WHERE no_anggota='"+no+"'";
             int status = KoneksiDB.execute(SQL);
             if(status==1) {
                 JOptionPane.showMessageDialog(this, "Data berhasil dihapus", "Sukses", JOptionPane.INFORMATION_MESSAGE);
