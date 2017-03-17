@@ -33,12 +33,3 @@ Tampilan saat button DELETE diklik setelah memilih salah satu baris | Tampilan t
 Tampilan saat button PRINT diklik | Tampilan hasil data yang diprint
 ------------ | -------------
 <img src="https://cloud.githubusercontent.com/assets/21327758/24034139/b1923dd6-0b22-11e7-897c-1d8d56671202.PNG"/> | <img src="https://cloud.githubusercontent.com/assets/21327758/24034155/c1e8c588-0b22-11e7-9943-ec8f32e0add2.PNG"/>
-
-<li> Identitas : </li>
-<ul>
-<li> Nama : Faiza Aulia Rahma Putra </li>
-<li> Kelas : XI RPL 4 </li>
-<li> No : 14 </li>
-<li> NIS : 4709.1428/070 </li>
-<li> Nama Sekolah : SMK Telkom Malang </li>
-</ul>
