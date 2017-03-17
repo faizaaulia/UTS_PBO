@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -340,7 +341,7 @@ public class Peminjaman extends javax.swing.JFrame {
         // TODO add your handling code here:
         int baris = tbData.getSelectedRow();
         if(baris != -1) {
-            String NIS = tbData.getValueAt(baris,0).toString();
+            String no = tbData.getValueAt(baris,0).toString();
             String SQL = "DELETE FROM peminjam WHERE no_anggota='"+no+"'";
             int status = KoneksiDB.execute(SQL);
             if(status==1) {
@@ -431,15 +432,28 @@ public class Peminjaman extends javax.swing.JFrame {
         if(baris != -1) {
             no_anggota.setText(tbData.getValueAt(baris,0).toString());
             nama_peminjam.setText(tbData.getValueAt(baris,1).toString());
-            txtTL.setText(tbData.getValueAt(baris,2).toString());
-            if("Laki-laki".equals(tbData.getValueAt(baris,3).toString())) {
-                rdLaki.setSelected(true);
-            } else {
-                rdPerempuan.setSelected(true);
+            alamat_peminjam.setText(tbData.getValueAt(baris,2).toString());
+            jenis_buku.setSelectedItem(tbData.getValueAt(baris,3).toString());
+            judul_buku.setText(tbData.getValueAt(baris,4).toString());
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+            Date dateFormat_p = null;
+            Date dateFormat_k = null;
+            
+            try {
+                dateFormat_p = dateFormat.parse(tbData.getValueAt(baris,5).toString());
+                dateFormat_k = dateFormat.parse(tbData.getValueAt(baris,6).toString());
+            } catch (ParseException ex) {
+                Logger.getLogger(Peminjaman.class.getName()).log(Level.SEVERE, null, ex);
             }
-            txtKelas.setText(tbData.getValueAt(baris,4).toString());
-            txtEmail.setText(tbData.getValueAt(baris,5).toString());
-            txtAlamat.setText(tbData.getValueAt(baris,6).toString());
+            tanggal_pinjam.setDate(dateFormat_p);
+            tanggal_kembali.setDate(dateFormat_k);
+            denda.setText(tbData.getValueAt(baris,7).toString());
+            if("Tepat Waktu".equals(tbData.getValueAt(baris,8).toString())) {
+                tepat.setSelected(true);
+            } else {
+                terlambat.setSelected(true);
+            }
         }
     }//GEN-LAST:event_tbDataMouseClicked
 
